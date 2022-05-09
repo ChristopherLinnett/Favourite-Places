@@ -12,27 +12,47 @@ extension Place {
     ///non-optional ViewModel Properties for (optionals) 'place_title' `place_description` `place_Image_URL` database attributes
     var placeTitle: String {
         get { place_title ?? ""}
-        set { place_title = newValue }
+        set { place_title = newValue
+            save()
+        }
     }
     var placeDescription: String {
         get { place_description ?? ""}
-        set { place_description = newValue}
+        set { place_description = newValue
+            save()
+        }
     }
     var placeImageURL: String {
         get { place_image_URL?.absoluteString ?? "" }
-        set { place_image_URL = URL.init(string: newValue)}
+        set { guard let url = URL(string: newValue) else { return }
+            place_image_URL = url
+            save()
+        }
     }
     var placeLatitude: String {
         get { String(place_latitude)}
         set { guard Double(newValue) != nil else {return}
             place_latitude = Double(newValue) ?? 0
+            save()
         }
     }
     var placeLongitude: String {
         get { String(place_longitude)}
         set { guard Double(newValue) != nil else {return}
             place_longitude = Double(newValue) ?? 0
+            save()
         }
+    }
+    
+    @discardableResult
+    func save() -> Bool {
+        do {
+        try managedObjectContext?.save()
+        } catch {
+            print("Error \(error)")
+            return false
+        }
+        return true
     }
 
 }
