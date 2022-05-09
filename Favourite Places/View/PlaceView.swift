@@ -19,8 +19,12 @@ struct PlaceView: View {
                 TextField("Enter Place Description", text: $place.placeDescription)
                 
                 VStack{
-                    TextField("Place's Latitude", text: $place.placeLatitude)
-                    TextField("Place's Longitude", text: $place.placeLongitude)
+                    HStack {
+                        Text("Latitude: ")
+                        TextField("Place's Latitude", text: $place.placeLatitude)}
+                    HStack {
+                        Text("Longitude: ")
+                        TextField("Place's Longitude", text: $place.placeLongitude)}
                 }
             } else {
                 Text(place.placeImageURL != "" ? place.placeImageURL : "noURL")
