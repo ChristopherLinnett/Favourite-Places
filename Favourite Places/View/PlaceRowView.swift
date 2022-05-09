@@ -13,7 +13,7 @@ struct PlaceRowView: View {
     var body: some View {
         HStack {
             image.aspectRatio(contentMode: .fit)
-                .frame(width: 80, height: 40, alignment: .center)
+                .frame(width: 150, height: 100, alignment: .center)
             Text(place.placeTitle)
     }
         .task {

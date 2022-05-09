@@ -29,6 +29,7 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deletePlaces)
             }
+            .navigationTitle("Favourite Places")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
