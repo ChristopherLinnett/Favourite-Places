@@ -11,15 +11,27 @@ struct PlaceView: View {
     @Environment(\.editMode) var editMode
     @ObservedObject var place: Place
     var body: some View {
+        
         List{
-            Text(place.placeImageURL != "" ? place.placeImageURL : "noURL")
-            Text(place.placeDescription != "" ? place.placeDescription: "noDescription")
-            VStack{
-                Text(place.placeLatitude)
-                Text(place.placeLongitude)
+            if editMode?.wrappedValue == .active  {
+                TextField("Enter Place Name", text: $place.placeTitle)
+                TextField("Enter Image URL", text: $place.placeImageURL)
+                TextField("Enter Place Description", text: $place.placeDescription)
+                
+                VStack{
+                    TextField("Place's Latitude", text: $place.placeLatitude)
+                    TextField("Place's Longitude", text: $place.placeLongitude)
+                }
+            } else {
+                Text(place.placeImageURL != "" ? place.placeImageURL : "noURL")
+                Text(place.placeDescription != "" ? place.placeDescription: "noDescription")
+                VStack{
+                    Text("lat: \(place.placeLatitude)")
+                    Text("lon: \(place.placeLongitude)")
+                }
             }
         }.navigationTitle(place.placeTitle)
     }
-
+    
 }
 
