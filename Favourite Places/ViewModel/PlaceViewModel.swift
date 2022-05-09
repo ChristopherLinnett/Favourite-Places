@@ -53,12 +53,13 @@ extension Place {
     }
     ///commits values from the editable text fields to data file triggering a change of all saves. Intended to be run when exiting edit mode.
     func commitValues(title: String, imageURL: String, description: String, lat: String, lon: String) {
-        placeTitle = title
-        placeImageURL = imageURL
-        placeDescription = description
-        placeLatitude = lat
-        placeLongitude = lon
+        if title != "" {placeTitle = title}
+        if imageURL != "" {placeImageURL = imageURL}
+        if description != "" {placeDescription = description}
+        if lat != "" {placeLatitude = lat}
+        if lon != "" {placeLongitude = lon}
     }
+
     ///Downloads, caches and displays an image based on a URL
     func getImage() async -> Image {
         guard let url = place_image_URL else {return defaultImage}
@@ -74,7 +75,6 @@ extension Place {
         }
         return defaultImage
     }
-    
     ///Saves data to context. Will be run any time data changes
     @discardableResult
     func save() -> Bool {

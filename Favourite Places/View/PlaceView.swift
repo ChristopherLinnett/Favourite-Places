@@ -29,15 +29,9 @@ struct PlaceView: View {
             .task {
                 image = await place.getImage()
             }
-        ///Enabling edit mode syncs edit fields with current values, Disabling edit mode updates current values with edit fields then saves and reloads image if not cached
+        ///Disabling edit mode updates current values with edit fields then saves and reloads image if not cached
             .onChange(of: editMode!.wrappedValue, perform: { value in
-                if value.isEditing {
-                    placeTitle = place.placeTitle
-                    placeImageURL = place.placeImageURL
-                    placeDescription = place.placeDescription
-                    placeLatitude = place.placeLatitude
-                    placeLongitude = place.placeLongitude
-                } else {
+                if !value.isEditing {
                     place.commitValues(title: placeTitle, imageURL: placeImageURL,description: placeDescription,lat: placeLatitude,lon: placeLongitude)
                     Task.init {
                         image = await place.getImage()
