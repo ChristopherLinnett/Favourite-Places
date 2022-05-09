@@ -15,6 +15,7 @@ struct PlaceView: View {
     @State var placeDescription: String = ""
     @State var placeLatitude: String = ""
     @State var placeLongitude: String = ""
+    @State var image = Image(systemName: "photo")
     
     var body: some View {
         
@@ -36,7 +37,7 @@ struct PlaceView: View {
                     }
                 }
             } else {
-                place.getImage().aspectRatio(contentMode: .fit)
+                image.aspectRatio(contentMode: .fit)
                 Text(place.placeDescription != "" ? place.placeDescription: "noDescription")
                 Spacer()
                 HStack{
@@ -46,7 +47,9 @@ struct PlaceView: View {
                 }
             }
         }.navigationTitle(place.placeTitle)
+            .task {
+                image = await place.getImage()
+            }
     }
-
 }
 
