@@ -12,40 +12,40 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Place.place_title, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>
+    private var places: FetchedResults<Place>
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(items) { item in
+                ForEach(places) { place in
                     NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        Text(place.place_title!)
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                        Text(place.place_title!)
                     }
                 }
-                .onDelete(perform: deleteItems)
+                .onDelete(perform: deletePlaces)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                    Button(action: addPlace) {
+                        Label("Add Place", systemImage: "plus")
                     }
                 }
             }
-            Text("Select an item")
+            Text("Select an place")
         }
     }
 
-    private func addItem() {
+    private func addPlace() {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newPlace = Place(context: viewContext)
+            newPlace.place_title = "New Place"
 
             do {
                 try viewContext.save()
@@ -58,9 +58,9 @@ struct ContentView: View {
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
+    private func deletePlaces(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            offsets.map { places[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()
@@ -74,7 +74,7 @@ struct ContentView: View {
     }
 }
 
-private let itemFormatter: DateFormatter = {
+private let placeFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .short
     formatter.timeStyle = .medium
