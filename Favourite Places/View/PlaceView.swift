@@ -24,21 +24,24 @@ struct PlaceView: View {
                 TextField("Enter Image URL", text: $placeImageURL) { $place.placeImageURL.wrappedValue = placeImageURL }
                 TextField("Enter Place Description", text: $placeDescription) { $place.placeDescription.wrappedValue = placeDescription }
                 
-                VStack{
+                HStack{
                     HStack {
-                        Text("Latitude: ")
-                        TextField("Place's Latitude", text: $placeLatitude) { $place.placeLatitude.wrappedValue = placeLatitude }
+                        Text("Lat: ")
+                        TextField("Lat", text: $placeLatitude) { $place.placeLatitude.wrappedValue = placeLatitude }
                     }
+                    Spacer()
                     HStack {
-                        Text("Longitude: ")
-                        TextField("Place's Longitude", text: $placeLongitude) { $place.placeLatitude.wrappedValue = placeLatitude }
+                        Text("Lon: ")
+                        TextField("Lon", text: $placeLongitude) { $place.placeLatitude.wrappedValue = placeLatitude }
                     }
                 }
             } else {
                 place.getImage().aspectRatio(contentMode: .fit)
                 Text(place.placeDescription != "" ? place.placeDescription: "noDescription")
-                VStack{
+                Spacer()
+                HStack{
                     Text("lat: \(place.placeLatitude)")
+                    Spacer()
                     Text("lon: \(place.placeLongitude)")
                 }
             }
