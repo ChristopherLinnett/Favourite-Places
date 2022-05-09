@@ -12,6 +12,7 @@ struct ShowPlaceDetails: View {
     @ObservedObject var place: Place
     var body: some View {
         image.aspectRatio(contentMode: .fit)
+        VStack {
         Text(place.placeDescription != "" ? place.placeDescription : "No Description").frame(height:200)
         Spacer()
         HStack{
@@ -19,5 +20,6 @@ struct ShowPlaceDetails: View {
             Spacer()
             Text("lon: \(place.placeLongitude)")
         }
-    }
+        }
+        }
 }

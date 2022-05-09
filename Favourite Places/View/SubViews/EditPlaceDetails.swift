@@ -16,20 +16,26 @@ struct EditPlaceDetails: View {
     @ObservedObject var place: Place
     
     var body: some View {
-        TextField("Enter Place Name", text: $placeTitle) { $place.placeTitle.wrappedValue = placeTitle }
-        TextField("Enter Image URL", text: $placeImageURL) { $place.placeImageURL.wrappedValue = placeImageURL }
-        Text("Enter Location Details:").fontWeight(.heavy)
-        TextEditor(text: $placeDescription).frame(height: 200, alignment: .center)
-        HStack{
-            HStack {
-                Text("Lat: ")
-                TextField("Lat", text: $placeLatitude) { $place.placeLatitude.wrappedValue = placeLatitude }
+        TextField("Enter Place Name", text: $placeTitle) { $place.placeTitle.wrappedValue = placeTitle }.frame(height: 50)
+        TextField("Enter Image URL", text: $placeImageURL) { $place.placeImageURL.wrappedValue = placeImageURL }.frame(height: 50)
+        VStack {
+            VStack {
+                Text("Enter Location Details:").fontWeight(.heavy)
+                TextEditor(text: $placeDescription).frame(height: 200, alignment: .center)
             }
             Spacer()
-            HStack {
-                Text("Lon: ")
-                TextField("Lon", text: $placeLongitude) { $place.placeLatitude.wrappedValue = placeLatitude }
+            HStack{
+                HStack {
+                    Text("Lat: ")
+                    TextField("Lat", text: $placeLatitude) { $place.placeLatitude.wrappedValue = placeLatitude }
+                }
+                Spacer()
+                HStack {
+                    Text("Lon: ")
+                    TextField("Lon", text: $placeLongitude) { $place.placeLatitude.wrappedValue = placeLatitude }
+                }
             }
+        }
+        
     }
-}
 }
