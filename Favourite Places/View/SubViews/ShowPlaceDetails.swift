@@ -13,13 +13,13 @@ struct ShowPlaceDetails: View {
     var body: some View {
         image.aspectRatio(contentMode: .fit)
         VStack {
-        Text(place.placeDescription != "" ? place.placeDescription : "No Description").frame(height:200)
-        Spacer()
-        HStack{
-            Text("lat: \(place.placeLatitude)")
+            Text(place.placeDescription != "" ? place.placeDescription : "No Description").frame(height:200)
             Spacer()
-            Text("lon: \(place.placeLongitude)")
+            HStack{
+                Text("lat: \(place.placeLatitude)")
+                Spacer()
+                Text("lon: \(place.placeLongitude)")
+            }
         }
-        }
-        }
+    }
 }
