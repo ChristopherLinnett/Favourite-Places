@@ -18,6 +18,7 @@ struct EditPlaceDetails: View {
     var body: some View {
         TextField("Enter Place Name", text: $placeTitle) { $place.placeTitle.wrappedValue = placeTitle }
         TextField("Enter Image URL", text: $placeImageURL) { $place.placeImageURL.wrappedValue = placeImageURL }
+        Text("Enter Location Details:").fontWeight(.heavy)
         TextEditor(text: $placeDescription).frame(height: 200, alignment: .center)
         HStack{
             HStack {
