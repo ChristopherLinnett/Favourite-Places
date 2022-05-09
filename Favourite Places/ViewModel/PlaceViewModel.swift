@@ -22,4 +22,17 @@ extension Place {
         get { place_image_URL?.absoluteString ?? "" }
         set { place_image_URL = URL.init(string: newValue)}
     }
+    var placeLatitude: String {
+        get { String(place_latitude)}
+        set { guard Double(newValue) != nil else {return}
+            place_latitude = Double(newValue) ?? 0
+        }
+    }
+    var placeLongitude: String {
+        get { String(place_longitude)}
+        set { guard Double(newValue) != nil else {return}
+            place_longitude = Double(newValue) ?? 0
+        }
+    }
+
 }
