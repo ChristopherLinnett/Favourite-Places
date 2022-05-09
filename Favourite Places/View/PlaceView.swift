@@ -23,14 +23,7 @@ struct PlaceView: View {
             if editMode?.wrappedValue == .active  {
                 EditPlaceDetails(placeTitle: $placeTitle, placeImageURL: $placeImageURL, placeDescription: $placeDescription, placeLatitude: $placeLatitude, placeLongitude: $placeLongitude, place: place)
             } else {
-                image.aspectRatio(contentMode: .fit)
-                Text(place.placeDescription != "" ? place.placeDescription : "No Description").frame(height:200)
-                Spacer()
-                HStack{
-                    Text("lat: \(place.placeLatitude)")
-                    Spacer()
-                    Text("lon: \(place.placeLongitude)")
-                }
+                ShowPlaceDetails(image: $image, place: place)
             }
         }.navigationTitle(place.placeTitle)
             .task {
