@@ -86,7 +86,4 @@ extension Place {
         }
         return true
     }
-    
-    
-    
 }

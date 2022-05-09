@@ -18,5 +18,6 @@ struct ShowPlaceDetails: View {
             Text("lat: \(place.placeLatitude)")
             Spacer()
             Text("lon: \(place.placeLongitude)")
-        }    }
+        }
+    }
 }

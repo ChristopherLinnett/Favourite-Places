@@ -15,7 +15,7 @@ struct PlaceRowView: View {
             image.aspectRatio(contentMode: .fit)
                 .frame(width: 150, height: 100, alignment: .center)
             Text(place.placeTitle)
-    }
+        }
         .task {
             ///Starts process of downloading, caching and loading imagge from url
             image = await place.getImage()

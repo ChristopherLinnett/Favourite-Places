@@ -31,15 +31,15 @@ struct PlaceView: View {
             }
         ///Disabling edit mode commits the editing fields to be saved
             .onChange(of: editMode!.wrappedValue, perform: { value in
-              if value.isEditing {
-                  placeTitle = place.placeTitle
-                  placeImageURL = place.placeImageURL
-                  placeDescription = place.placeDescription
-                  placeLatitude = place.placeLatitude
-                  placeLongitude = place.placeLongitude
-              } else {
-                  place.commitValues(title: placeTitle, imageURL: placeImageURL,description: placeDescription,lat: placeLatitude,lon: placeLongitude)
-              }
+                if value.isEditing {
+                    placeTitle = place.placeTitle
+                    placeImageURL = place.placeImageURL
+                    placeDescription = place.placeDescription
+                    placeLatitude = place.placeLatitude
+                    placeLongitude = place.placeLongitude
+                } else {
+                    place.commitValues(title: placeTitle, imageURL: placeImageURL,description: placeDescription,lat: placeLatitude,lon: placeLongitude)
+                }
             })
     }
 }

@@ -10,12 +10,12 @@ import CoreData
 ///Master view, will show a title and a list of places. Each displaying a thumbnail and title that acts as a link to further details.
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Place.place_title, ascending: true)],
         animation: .default)
     private var places: FetchedResults<Place>
-
+    
     var body: some View {
         NavigationView {
             List {
@@ -47,7 +47,7 @@ struct ContentView: View {
         withAnimation {
             let newPlace = Place(context: viewContext)
             newPlace.place_title = "New Place"
-
+            
             do {
                 try viewContext.save()
             } catch {
@@ -62,7 +62,7 @@ struct ContentView: View {
     private func deletePlaces(offsets: IndexSet) {
         withAnimation {
             offsets.map { places[$0] }.forEach(viewContext.delete)
-
+            
             do {
                 try viewContext.save()
             } catch {

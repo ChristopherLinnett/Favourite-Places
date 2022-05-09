@@ -4,9 +4,25 @@
 //
 //  Created by Christopher Linnett on 9/5/2022.
 //
-
+import CoreData
 import XCTest
 @testable import Favourite_Places
+
+
+class TestCoreDataStack: NSObject {
+    lazy var persistentContainer: NSPersistentContainer = {
+        let description = NSPersistentStoreDescription()
+        description.url = URL(fileURLWithPath: "/dev/null")
+        let container = NSPersistentContainer(name: "Place")
+        container.persistentStoreDescriptions = [description]
+        container.loadPersistentStores { _, error in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        }
+        return container
+    }()
+}
 
 class Favourite_PlacesTests: XCTestCase {
 
@@ -19,6 +35,7 @@ class Favourite_PlacesTests: XCTestCase {
     }
 
     func testExample() throws {
+
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         // Any test you write for XCTest can be annotated as throws and async.
