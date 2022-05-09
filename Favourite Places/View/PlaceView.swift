@@ -21,24 +21,10 @@ struct PlaceView: View {
         
         List{
             if editMode?.wrappedValue == .active  {
-                TextField("Enter Place Name", text: $placeTitle) { $place.placeTitle.wrappedValue = placeTitle }
-                TextField("Enter Image URL", text: $placeImageURL) { $place.placeImageURL.wrappedValue = placeImageURL }
-                TextField("Enter Place Description", text: $placeDescription) { $place.placeDescription.wrappedValue = placeDescription }
-                
-                HStack{
-                    HStack {
-                        Text("Lat: ")
-                        TextField("Lat", text: $placeLatitude) { $place.placeLatitude.wrappedValue = placeLatitude }
-                    }
-                    Spacer()
-                    HStack {
-                        Text("Lon: ")
-                        TextField("Lon", text: $placeLongitude) { $place.placeLatitude.wrappedValue = placeLatitude }
-                    }
-                }
+                EditPlaceDetails(placeTitle: $placeTitle, placeImageURL: $placeImageURL, placeDescription: $placeDescription, placeLatitude: $placeLatitude, placeLongitude: $placeLongitude, place: place)
             } else {
                 image.aspectRatio(contentMode: .fit)
-                Text(place.placeDescription != "" ? place.placeDescription: "noDescription")
+                Text(place.placeDescription != "" ? place.placeDescription : "No Description").frame(height:200)
                 Spacer()
                 HStack{
                     Text("lat: \(place.placeLatitude)")
@@ -50,6 +36,17 @@ struct PlaceView: View {
             .task {
                 image = await place.getImage()
             }
+            .onChange(of: editMode!.wrappedValue, perform: { value in
+              if value.isEditing {
+                  placeTitle = place.placeTitle
+                  placeImageURL = place.placeImageURL
+                  placeDescription = place.placeDescription
+                  placeLatitude = place.placeLatitude
+                  placeLongitude = place.placeLongitude
+              } else {
+                  place.commitValues(title: placeTitle, imageURL: placeImageURL,description: placeDescription,lat: placeLatitude,lon: placeLongitude)
+              }
+            })
     }
 }
 
