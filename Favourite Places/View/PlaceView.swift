@@ -10,21 +10,29 @@ import SwiftUI
 struct PlaceView: View {
     @Environment(\.editMode) var editMode
     @ObservedObject var place: Place
+    @State var placeTitle: String = ""
+    @State var placeImageURL: String = ""
+    @State var placeDescription: String = ""
+    @State var placeLatitude: String = ""
+    @State var placeLongitude: String = ""
+    
     var body: some View {
         
         List{
             if editMode?.wrappedValue == .active  {
-                TextField("Enter Place Name", text: $place.placeTitle)
-                TextField("Enter Image URL", text: $place.placeImageURL)
-                TextField("Enter Place Description", text: $place.placeDescription)
+                TextField("Enter Place Name", text: $placeTitle) { $place.placeTitle.wrappedValue = placeTitle }
+                TextField("Enter Image URL", text: $placeImageURL) { $place.placeImageURL.wrappedValue = placeImageURL }
+                TextField("Enter Place Description", text: $placeDescription) { $place.placeDescription.wrappedValue = placeDescription }
                 
                 VStack{
                     HStack {
                         Text("Latitude: ")
-                        TextField("Place's Latitude", text: $place.placeLatitude)}
+                        TextField("Place's Latitude", text: $placeLatitude) { $place.placeLatitude.wrappedValue = placeLatitude }
+                    }
                     HStack {
                         Text("Longitude: ")
-                        TextField("Place's Longitude", text: $place.placeLongitude)}
+                        TextField("Place's Longitude", text: $placeLongitude) { $place.placeLatitude.wrappedValue = placeLatitude }
+                    }
                 }
             } else {
                 Text(place.placeImageURL != "" ? place.placeImageURL : "noURL")
