@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+///This view presents each of the datapoints of the place within the file, and displays an image that is sourced from a url
 struct ShowPlaceDetails: View {
     @Binding var image: Image
     @ObservedObject var place: Place

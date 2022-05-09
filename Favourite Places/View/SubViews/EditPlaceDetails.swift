@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+///this view gives access to editing tools for making changes to each of the places in this applicaiton
 struct EditPlaceDetails: View {
     @Binding var placeTitle: String
     @Binding var placeImageURL: String

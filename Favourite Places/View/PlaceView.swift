@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+///This is the detail view that will show either the details of each place or show the editing fields of an individual place
 struct PlaceView: View {
     @Environment(\.editMode) var editMode
     @ObservedObject var place: Place
@@ -18,7 +18,7 @@ struct PlaceView: View {
     @State var image = Image(systemName: "photo")
     
     var body: some View {
-        
+        ///while edit mode is disabled, the list will present information to the user, when enabled will show editing fields.
         List{
             if editMode?.wrappedValue == .active  {
                 EditPlaceDetails(placeTitle: $placeTitle, placeImageURL: $placeImageURL, placeDescription: $placeDescription, placeLatitude: $placeLatitude, placeLongitude: $placeLongitude, place: place)
@@ -29,6 +29,7 @@ struct PlaceView: View {
             .task {
                 image = await place.getImage()
             }
+        ///Disabling edit mode commits the editing fields to be saved
             .onChange(of: editMode!.wrappedValue, perform: { value in
               if value.isEditing {
                   placeTitle = place.placeTitle

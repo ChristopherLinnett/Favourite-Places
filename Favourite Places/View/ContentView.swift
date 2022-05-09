@@ -7,7 +7,7 @@
 
 import SwiftUI
 import CoreData
-
+///Master view, will show a title and a list of places. Each displaying a thumbnail and title that acts as a link to further details.
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -42,7 +42,7 @@ struct ContentView: View {
             }
         }
     }
-
+    ///Creates an empty new place and saves it to the main file
     private func addPlace() {
         withAnimation {
             let newPlace = Place(context: viewContext)
@@ -58,7 +58,7 @@ struct ContentView: View {
             }
         }
     }
-
+    ///Deletes the selected place from the screen then saves that change
     private func deletePlaces(offsets: IndexSet) {
         withAnimation {
             offsets.map { places[$0] }.forEach(viewContext.delete)

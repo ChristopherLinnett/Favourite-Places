@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+///represents a thumbnail and title for each of the places in the list.
 struct PlaceRowView: View {
     @ObservedObject var place: Place
     @State var image = Image(systemName: "photo").resizable()
@@ -17,6 +17,7 @@ struct PlaceRowView: View {
             Text(place.placeTitle)
     }
         .task {
+            ///Starts process of downloading, caching and loading imagge from url
             image = await place.getImage()
         }
     }

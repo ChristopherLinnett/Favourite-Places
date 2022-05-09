@@ -11,20 +11,23 @@ import SwiftUI
 fileprivate let defaultImage = Image(systemName: "photo")
 fileprivate var downloadedImages = [URL : Image]()
 
+///non-optional ViewModel Properties for (optionals) and conversion to strings for use with views 'place_title' `place_description` `place_Image_URL` `place_latitude` `place_longitude` database attributes
 extension Place {
-    ///non-optional ViewModel Properties for (optionals) 'place_title' `place_description` `place_Image_URL` database attributes
+    ///non-optional conversion of database member 'place_title'
     var placeTitle: String {
         get { place_title ?? ""}
         set { place_title = newValue
             save()
         }
     }
+    ///non-optional  conversion of database member 'place_description'
     var placeDescription: String {
         get { place_description ?? ""}
         set { place_description = newValue
             save()
         }
     }
+    ///non-optional Text string conversion of database URL optional  'place_image_URL`
     var placeImageURL: String {
         get { place_image_URL?.absoluteString ?? "" }
         set { guard let url = URL(string: newValue) else { return }
@@ -32,6 +35,7 @@ extension Place {
             save()
         }
     }
+    ///Text string conversion of database member 'place_latitude'
     var placeLatitude: String {
         get { String(place_latitude)}
         set { guard Double(newValue) != nil else {return}
@@ -39,6 +43,7 @@ extension Place {
             save()
         }
     }
+    ///Text string conversion of database member 'place_longitude'
     var placeLongitude: String {
         get { String(place_longitude)}
         set { guard Double(newValue) != nil else {return}
@@ -46,7 +51,7 @@ extension Place {
             save()
         }
     }
-    
+    ///commits values from the editable text fields to data file triggering a change of all saves. Intended to be run when exiting edit mode.
     func commitValues(title: String, imageURL: String, description: String, lat: String, lon: String) {
         placeTitle = title
         placeImageURL = imageURL
@@ -54,7 +59,7 @@ extension Place {
         placeLatitude = lat
         placeLongitude = lon
     }
-    
+    ///Downloads, caches and displays an image based on a URL
     func getImage() async -> Image {
         guard let url = place_image_URL else {return defaultImage}
         if let image = downloadedImages[url] {return image}
@@ -70,6 +75,7 @@ extension Place {
         return defaultImage
     }
     
+    ///Saves data to context. Will be run any time data changes
     @discardableResult
     func save() -> Bool {
         do {
