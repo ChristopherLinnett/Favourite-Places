@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 extension Place {
-    ///non-optional ViewModel Properties for (optionals) 'place_title' `place_description` database attributes
+    ///non-optional ViewModel Properties for (optionals) 'place_title' `place_description` `place_Image_URL` database attributes
     var placeTitle: String {
         get { place_title ?? ""}
         set { place_title = newValue }
