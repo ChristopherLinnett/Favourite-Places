@@ -21,9 +21,9 @@ struct ContentView: View {
             List {
                 ForEach(places) { place in
                     NavigationLink {
-                        Text(place.place_title!)
+                        PlaceView(place: place)
                     } label: {
-                        Text(place.place_title!)
+                        PlaceRowView(place: place)
                     }
                 }
                 .onDelete(perform: deletePlaces)
