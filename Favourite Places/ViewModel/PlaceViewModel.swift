@@ -47,6 +47,14 @@ extension Place {
         }
     }
     
+    func commitValues(title: String, imageURL: String, description: String, lat: String, lon: String) {
+        placeTitle = title
+        placeImageURL = imageURL
+        placeDescription = description
+        placeLatitude = lat
+        placeLongitude = lon
+    }
+    
     func getImage() async -> Image {
         guard let url = place_image_URL else {return defaultImage}
         if let image = downloadedImages[url] {return image}
