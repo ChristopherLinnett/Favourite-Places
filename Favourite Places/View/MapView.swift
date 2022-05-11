@@ -24,6 +24,13 @@ struct MapView: View {
                 TextField(region.longitudeString, text: $region.longitudeString)
             }
         }.navigationTitle(place.placeTitle)
+            .onAppear {
+                    region.latitudeString = place.placeLatitude
+                    region.longitudeString = place.placeLongitude }
+            .onDisappear {
+                    place.placeLatitude = String(region.center.latitude)
+                    place.placeLongitude = String(region.center.longitude)
+    }
     }
 }
 

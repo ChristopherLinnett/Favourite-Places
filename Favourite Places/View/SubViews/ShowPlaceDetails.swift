@@ -25,13 +25,6 @@ struct ShowPlaceDetails: View {
                 Spacer()
                 Text("lon: \(place.placeLongitude)")
             }
-        }.onAppear {
-            if region.center.latitude < 1 && region.center.latitude > -1  && region.center.longitude < 1 && region.center.longitude > -1 {
-            region.latitudeString = place.placeLatitude
-                region.longitudeString = place.placeLongitude } else {
-                    place.placeLatitude = String(region.center.latitude)
-                    place.placeLongitude = String(region.center.longitude)
-                }
         }
     }
 }
