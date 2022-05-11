@@ -14,17 +14,17 @@ struct ShowPlaceDetails: View {
     @State var region: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), latitudinalMeters: 5000, longitudinalMeters: 5000)
     var body: some View {
         image.aspectRatio(contentMode: .fit)
-        VStack {
+//        VStack {
             Text(place.placeDescription != "" ? place.placeDescription : "No Description").frame(height:200)
             Spacer()
             NavigationLink(destination: MapView(place: place, region: $region)) {
                 Text("Show on Map")
             }
-            HStack{
-                Text("lat: \(place.placeLatitude)")
-                Spacer()
-                Text("lon: \(place.placeLongitude)")
-            }
-        }
+//            HStack{
+//                Text("lat: \(place.placeLatitude)")
+//                Spacer()
+//                Text("lon: \(place.placeLongitude)")
+//            }
+//        }
     }
 }
