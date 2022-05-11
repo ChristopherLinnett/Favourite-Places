@@ -6,15 +6,24 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct MapView: View {
+    @ObservedObject var place:Place
+    @Binding var region: MKCoordinateRegion
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Map(coordinateRegion: $region)
+            HStack{
+                Text("Lat:")
+                TextField(region.latitudeString, text: $region.latitudeString)
+            }
+            
+            HStack {
+                Text("Lon:")
+                TextField(region.longitudeString, text: $region.longitudeString)
+            }
+        }.navigationTitle(place.placeTitle)
     }
 }
 
-struct MapView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapView()
-    }
-}
