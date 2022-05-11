@@ -16,21 +16,20 @@ struct MapView: View {
             Map(coordinateRegion: $region)
             HStack{
                 Text("Lat:")
-                TextField(region.latitudeString, text: $region.latitudeString)
+                TextField(region.latitudeString, text: $region.latitudeString) {place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)}
             }
             
             HStack {
                 Text("Lon:")
-                TextField(region.longitudeString, text: $region.longitudeString)
+                    TextField(region.longitudeString, text: $region.longitudeString) {place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)}
             }
         }.navigationTitle(place.placeTitle)
             .onAppear {
-                    region.latitudeString = place.placeLatitude
-                    region.longitudeString = place.placeLongitude }
+                region.sendToMap(latitude: place.placeLatitude,longitude: place.placeLongitude)
+            }
             .onDisappear {
-                    place.placeLatitude = String(region.center.latitude)
-                    place.placeLongitude = String(region.center.longitude)
-    }
+                place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)
+            }
     }
 }
 

@@ -86,4 +86,9 @@ extension Place {
         }
         return true
     }
+    
+    func updateFromMap(latitude:Double, longitude: Double){
+        placeLatitude = String(latitude)
+        placeLongitude = String(longitude)
+    }
 }

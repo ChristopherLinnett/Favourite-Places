@@ -23,4 +23,8 @@ extension MKCoordinateRegion {
             center.longitude = lon
         }
 }
+    mutating func sendToMap(latitude: String, longitude: String) {
+        latitudeString = latitude
+        longitudeString = longitude
+    }
 }
