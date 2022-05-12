@@ -18,7 +18,7 @@ struct ShowPlaceDetails: View {
             Text(place.placeDescription != "" ? place.placeDescription : "No Description").frame(height:200)
             Spacer()
             NavigationLink(destination: MapView(place: place, region: $region)) {
-                Text("Show on Map")
+                Text("Show \(place.placeTitle) on Map")
             }
 //            HStack{
 //                Text("lat: \(place.placeLatitude)")
