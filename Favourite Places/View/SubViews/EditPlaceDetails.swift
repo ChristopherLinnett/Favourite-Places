@@ -23,18 +23,18 @@ struct EditPlaceDetails: View {
                 Text("Enter Location Details:").fontWeight(.heavy)
                 TextEditor(text: $placeDescription).frame(height: 200, alignment: .center)
             }
-            Spacer()
-            HStack{
-                HStack {
-                    Text("Lat: ")
-                    TextField("Lat", text: $placeLatitude) { $place.placeLatitude.wrappedValue = placeLatitude }
-                }
-                Spacer()
-                HStack {
-                    Text("Lon: ")
-                    TextField("Lon", text: $placeLongitude) { $place.placeLatitude.wrappedValue = placeLatitude }
-                }
-            }
+//            Spacer()
+//            HStack{
+//                HStack {
+//                    Text("Lat: ")
+//                    TextField("Lat", text: $placeLatitude) { $place.placeLatitude.wrappedValue = placeLatitude }
+//                }
+//                Spacer()
+//                HStack {
+//                    Text("Lon: ")
+//                    TextField("Lon", text: $placeLongitude) { $place.placeLatitude.wrappedValue = placeLatitude }
+//                }
+//            }
         }
         
     }
