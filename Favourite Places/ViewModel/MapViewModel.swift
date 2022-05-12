@@ -23,8 +23,22 @@ extension MKCoordinateRegion {
             center.longitude = lon
         }
 }
-    mutating func sendToMap(latitude: String, longitude: String) {
+    @discardableResult
+    mutating func sendToMapLat(latitude: String)->Bool {
+        guard let lat = Float(latitude) else {return false}
+        if lat >= -90 && lat <= 90 {
         latitudeString = latitude
-        longitudeString = longitude
+        } else {return false}
+        return true
     }
+    @discardableResult
+    mutating func sendToMapLon(longitude: String)->Bool {
+        guard let lon = Float(longitude) else {return false}
+        if lon >= -180 && lon <= 180 {
+        longitudeString = longitude
+        } else {return false}
+        return true
+
+    }
+    
 }

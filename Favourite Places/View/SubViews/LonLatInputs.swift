@@ -9,16 +9,34 @@ import SwiftUI
 import MapKit
 
 struct LonLatInputs: View {
+    @State var latInput: String = ""
+    @State var lonInput: String = ""
     @Binding var region: MKCoordinateRegion
     @ObservedObject var place:Place
     var body: some View {
         HStack{
             Text("Lat:")
-            TextField(region.latitudeString, text: $region.latitudeString) {place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)}
+            TextField(region.latitudeString, text: $latInput).onSubmit {
+                region.sendToMapLat(latitude: latInput)
+                latInput = ""
+                place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)}
         }
         HStack {
             Text("Lon:")
-                TextField(region.longitudeString, text: $region.longitudeString) {place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)}
+            TextField(region.longitudeString, text: $lonInput) .onSubmit {
+                region.sendToMapLon(longitude: lonInput)
+                lonInput = ""
+                place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)}
+        }.onAppear {
+            latInput = ""
+            lonInput = ""
+        }.onDisappear {
+            region.sendToMapLat(latitude: latInput)
+            region.sendToMapLon(longitude: lonInput)
+            
+            
+            
         }
+        
     }
 }

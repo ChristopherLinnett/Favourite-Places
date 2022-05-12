@@ -24,7 +24,8 @@ struct MapView: View {
             .navigationBarItems(trailing: EditButton())
         
             .onAppear {
-                region.sendToMap(latitude: place.placeLatitude,longitude: place.placeLongitude)
+                region.sendToMapLat(latitude: place.placeLatitude)
+                region.sendToMapLon(longitude: place.placeLongitude)
             }
             .onDisappear {
                 place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)
