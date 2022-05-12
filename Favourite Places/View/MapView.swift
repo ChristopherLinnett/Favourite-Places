@@ -11,19 +11,18 @@ import MapKit
 struct MapView: View {
     @ObservedObject var place:Place
     @Binding var region: MKCoordinateRegion
+    @Environment(\.editMode) var editMode
     var body: some View {
         VStack {
             Map(coordinateRegion: $region)
-            HStack{
-                Text("Lat:")
-                TextField(region.latitudeString, text: $region.latitudeString) {place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)}
-            }
-            
-            HStack {
-                Text("Lon:")
-                    TextField(region.longitudeString, text: $region.longitudeString) {place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)}
+            if editMode?.wrappedValue == .active {
+                LonLatInputs(region: $region, place:place)
+            } else {
+                LonLatOutputs(region: $region, place:place)
             }
         }.navigationTitle(place.placeTitle)
+            .navigationBarItems(trailing: EditButton())
+        
             .onAppear {
                 region.sendToMap(latitude: place.placeLatitude,longitude: place.placeLongitude)
             }
