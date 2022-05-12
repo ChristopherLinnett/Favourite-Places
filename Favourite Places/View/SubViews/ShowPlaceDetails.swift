@@ -11,11 +11,11 @@ import MapKit
 struct ShowPlaceDetails: View {
     @Binding var image: Image
     @ObservedObject var place: Place
-    @State var region: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), latitudinalMeters: 5000, longitudinalMeters: 5000)
+    @State var region: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), latitudinalMeters: 1000, longitudinalMeters: 1000)
     var body: some View {
         image.aspectRatio(contentMode: .fit)
 //        VStack {
-            Text(place.placeDescription != "" ? place.placeDescription : "No Description").frame(height:200)
+        Text(place.placeDescription != "" ? place.placeDescription : "No Description").frame(height:200).listRowSeparator(.hidden)
             Spacer()
             NavigationLink(destination: MapView(place: place, region: $region)) {
                 Text("Show \(place.placeTitle) on Map")
@@ -26,5 +26,6 @@ struct ShowPlaceDetails: View {
 //                Text("lon: \(place.placeLongitude)")
 //            }
 //        }
+            .listRowSeparator(.hidden)
     }
 }
