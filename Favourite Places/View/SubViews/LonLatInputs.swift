@@ -28,14 +28,14 @@ struct LonLatInputs: View {
                 lonInput = ""
                 place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)}
         }.onAppear {
+            region.sendToMapLat(latitude: place.placeLatitude)
+            region.sendToMapLon(longitude: place.placeLongitude)
             latInput = ""
             lonInput = ""
         }.onDisappear {
             region.sendToMapLat(latitude: latInput)
             region.sendToMapLon(longitude: lonInput)
-            
-            
-            
+            place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)
         }
         
     }

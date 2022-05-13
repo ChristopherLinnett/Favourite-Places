@@ -27,9 +27,6 @@ struct MapView: View {
                 region.sendToMapLat(latitude: place.placeLatitude)
                 region.sendToMapLon(longitude: place.placeLongitude)
             }
-            .onDisappear {
-                place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)
-            }
     }
 }
 

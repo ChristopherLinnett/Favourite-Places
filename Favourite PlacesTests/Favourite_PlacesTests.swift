@@ -13,7 +13,7 @@ class TestCoreDataStack: NSObject {
     lazy var persistentContainer: NSPersistentContainer = {
         let description = NSPersistentStoreDescription()
         description.url = URL(fileURLWithPath: "/dev/null")
-        let container = NSPersistentContainer(name: "Place")
+        let container = NSPersistentContainer(name: "TestPlace")
         container.persistentStoreDescriptions = [description]
         container.loadPersistentStores { _, error in
             if let error = error as NSError? {
@@ -25,6 +25,8 @@ class TestCoreDataStack: NSObject {
 }
 
 class Favourite_PlacesTests: XCTestCase {
+    var testStack = TestCoreDataStack()
+    
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
