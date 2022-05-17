@@ -23,10 +23,6 @@ struct MapView: View {
         }.navigationTitle(place.placeTitle)
             .navigationBarItems(trailing: EditButton())
         
-            .onAppear {
-                region.sendToMapLat(latitude: place.placeLatitude)
-                region.sendToMapLon(longitude: place.placeLongitude)
-            }
     }
 }
 

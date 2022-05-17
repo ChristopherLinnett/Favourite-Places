@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 ///This is the detail view that will show either the details of each place or show the editing fields of an individual place
 struct PlaceView: View {
     @Environment(\.editMode) var editMode
@@ -16,6 +17,9 @@ struct PlaceView: View {
     @State var placeLatitude: String = ""
     @State var placeLongitude: String = ""
     @State var image = Image(systemName: "photo")
+    @State var region: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), latitudinalMeters: 1000, longitudinalMeters: 1000)
+    
+    
     
     var body: some View {
         ///while edit mode is disabled, the list will present information to the user, when enabled will show editing fields.
@@ -23,7 +27,7 @@ struct PlaceView: View {
             if editMode?.wrappedValue == .active  {
                 EditPlaceDetails(placeTitle: $placeTitle, placeImageURL: $placeImageURL, placeDescription: $placeDescription, placeLatitude: $placeLatitude, placeLongitude: $placeLongitude, place: place)
             } else {
-                ShowPlaceDetails(image: $image, place: place)
+                ShowPlaceDetails(image: $image ,place: place, region: $region)
             }
         }.navigationTitle(place.placeTitle)
             .task {
@@ -38,6 +42,10 @@ struct PlaceView: View {
                     }
                 }
             })
+            .onAppear {
+                region.sendToMapLat(latitude: place.placeLatitude)
+                region.sendToMapLon(longitude: place.placeLongitude)
+            }
     }
 }
 
