@@ -7,6 +7,7 @@
 import CoreData
 import XCTest
 @testable import Favourite_Places
+import MapKit
 
 
 class TestCoreDataStack: NSObject {
@@ -34,6 +35,25 @@ class Favourite_PlacesTests: XCTestCase {
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+    func testMapFeatures() throws {
+        // initialise a map region to test ability to edit
+        var testMapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 10, longitude: 10), latitudinalMeters: 100, longitudinalMeters: 100)
+        XCTAssertEqual(testMapRegion.latitudeString, "10.0")  //Testing variable getter is able to pull a string from the initialised lat Double value
+        XCTAssertEqual(testMapRegion.longitudeString, "10.0") //Testing variable getter is able to pull a string from the initialised lat Double value
+        
+        testMapRegion.sendToMapLat(latitude: "80")  //attempting to modify map region value
+        testMapRegion.sendToMapLon(longitude: "80") //attempting to modify map region value
+        XCTAssertEqual(testMapRegion.latitudeString, "80.0") //checking modification was successful
+        XCTAssertEqual(testMapRegion.longitudeString, "80.0") //checking modification was successful
+        XCTAssertEqual(testMapRegion.center.latitude, 80) //Testing that map's co-ordinate region is also updated on string change
+        XCTAssertEqual(testMapRegion.center.longitude, 80) //Testing that map's co-ordinate region is also updated on string change
+
+        testMapRegion.sendToMapLat(latitude: "200")  //attempting to set map value out of bounds (success = no change in map value)
+        testMapRegion.sendToMapLon(longitude: "200")  //attempting to set map value out of bounds (success = no change in map value)
+        XCTAssertNotEqual(testMapRegion.latitudeString, "200.0") //making sure new value of 200 was not set
+        XCTAssertNotEqual(testMapRegion.longitudeString, "200.0") //making sure new value of 200 was not set
+        
     }
 
     func testExample() throws {
