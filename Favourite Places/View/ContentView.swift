@@ -40,6 +40,10 @@ struct ContentView: View {
                     }
                 }
             }
+        }.onAppear {
+            if places.isEmpty {
+                persistenceController.generateDefaultData()
+            }
         }
     }
 
