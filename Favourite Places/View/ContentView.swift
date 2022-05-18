@@ -10,7 +10,7 @@ import CoreData
 ///Master view, will show a title and a list of places. Each displaying a thumbnail and title that acts as a link to further details.
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    
+    let persistenceController: PersistenceController
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Place.place_title, ascending: true)],
         animation: .default)
@@ -35,29 +35,15 @@ struct ContentView: View {
                     EditButton()
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: addPlace) {
+                    Button(action: persistenceController.addPlace) {
                         Label("Add Place", systemImage: "plus")
                     }
                 }
             }
         }
     }
-    ///Creates an empty new place and saves it to the main file
-    private func addPlace() {
-        withAnimation {
-            let newPlace = Place(context: viewContext)
-            newPlace.place_title = " New Place"
-            
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
+
+    
     ///Deletes the selected place from the screen then saves that change
     private func deletePlaces(offsets: IndexSet) {
         withAnimation {
@@ -78,6 +64,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView(persistenceController: PersistenceController()).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

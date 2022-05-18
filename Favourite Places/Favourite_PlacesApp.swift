@@ -13,7 +13,7 @@ struct Favourite_PlacesApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(persistenceController: persistenceController)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

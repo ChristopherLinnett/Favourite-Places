@@ -53,4 +53,20 @@ struct PersistenceController {
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
     }
+    ///Creates an empty new place and saves it to the main file
+    func addPlace() {
+        let newPlace = Place(context: PersistenceController.shared.container.viewContext)
+            newPlace.place_title = " New Place"
+            
+            do {
+                try PersistenceController.shared.container.viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+    }
+    
+    
 }
