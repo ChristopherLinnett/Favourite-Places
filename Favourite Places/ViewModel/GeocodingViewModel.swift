@@ -40,4 +40,24 @@ class GeocodingVM: ObservableObject {
 
         }
     }
+    
+    func lookupName() {
+        let coder = CLGeocoder()
+        coder.reverseGeocodeLocation(CLLocation(latitude: region.center.latitude, longitude: region.center.longitude)){ [self] (optionalplacemarks, optionalError) in
+            if let error = optionalError {
+                print("error looking up \(self.region.center.latitude), \(self.region.center.longitude): \(error.localizedDescription)")
+                return
+            }
+            guard let placemarks = optionalplacemarks, !placemarks.isEmpty else {
+                print("Nothing found")
+                return
+            }
+            let placemark = placemarks[0]
+            guard let title = placemark.subLocality, let country = placemark.country else {
+                print("mark has no location")
+                return
+            }
+             self.regionTitle = "\(title), \(country)"
+        }
+    }
 }

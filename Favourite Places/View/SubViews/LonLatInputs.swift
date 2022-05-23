@@ -33,7 +33,7 @@ struct LonLatInputs: View {
         
             }
             Button {
-                print("send co-ordinates to geocode")
+                geocoder.lookupName()
             } label: {
                 Image(systemName: "mappin.and.ellipse").resizable()
             }.frame(width:25, height: 25).padding()
