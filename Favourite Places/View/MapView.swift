@@ -16,7 +16,7 @@ struct MapView: View {
     var body: some View {
         VStack {
             if editMode?.wrappedValue == .active {
-                LocationTextOutput(locationName: $locationName, geocoder: geocoder)
+                LocationTextOutput(geocoder: geocoder)
                 Map(coordinateRegion: $geocoder.region)
                 LonLatInputs(geocoder: geocoder, place:place)
             } else {
@@ -26,7 +26,9 @@ struct MapView: View {
             }
         }.navigationTitle(place.placeTitle)
             .navigationBarItems(trailing: EditButton())
-        
+            .onAppear{
+                geocoder.regionTitle = place.placeTitle
+            }
     }
 }
 

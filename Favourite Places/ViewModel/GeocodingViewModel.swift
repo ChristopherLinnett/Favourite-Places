@@ -10,22 +10,20 @@ import CoreLocation
 import MapKit
 
 class GeocodingVM: ObservableObject {
-    var latString: String
-    var lonString: String
- @Published var region: MKCoordinateRegion
+    @Published var regionTitle: String
+    @Published var region: MKCoordinateRegion
  
     
     
     init(){
-        latString = "50"
-        lonString = "50"
-        region = MKCoordinateRegion()
+        regionTitle = ""
+        region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), latitudinalMeters: 500, longitudinalMeters: 500)
     }
-    func lookupCoordinates(for addressName: String){
+    func lookupCoordinates(){
         let coder = CLGeocoder()
-        coder.geocodeAddressString(addressName) { (optionalplacemarks, optionalError) in
+        coder.geocodeAddressString(regionTitle) { (optionalplacemarks, optionalError) in
             if let error = optionalError {
-                print("error looking up \(addressName): \(error.localizedDescription)")
+                print("error looking up \(self.regionTitle): \(error.localizedDescription)")
                 return
             }
             guard let placemarks = optionalplacemarks, !placemarks.isEmpty else {
@@ -39,8 +37,7 @@ class GeocodingVM: ObservableObject {
             }
             self.region.sendToMapLat(latitude: String(location.coordinate.latitude))
             self.region.sendToMapLon(longitude: String(location.coordinate.longitude))
-            self.latString = String(location.coordinate.latitude)
-            self.lonString = String(location.coordinate.longitude)
+
         }
     }
 }
