@@ -15,28 +15,38 @@ struct LonLatInputs: View {
     @ObservedObject var place:Place
     var body: some View {
         HStack{
-            Text("Lat:")
-            TextField(region.latitudeString, text: $latInput).onSubmit {
-                region.sendToMapLat(latitude: latInput)
-                latInput = ""
-                place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)}
-        }
-        HStack {
-            Text("Lon:")
-            TextField(region.longitudeString, text: $lonInput) .onSubmit {
-                region.sendToMapLon(longitude: lonInput)
-                lonInput = ""
-                place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)}
-        }.onAppear {
-            region.sendToMapLat(latitude: place.placeLatitude)
-            region.sendToMapLon(longitude: place.placeLongitude)
-            latInput = ""
-            lonInput = ""
-        }.onDisappear {
-            region.sendToMapLat(latitude: latInput)
-            region.sendToMapLon(longitude: lonInput)
-            place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)
-        }
+            VStack {
+                HStack{
+                    Text("Lat:")
+                    TextField(region.latitudeString, text: $latInput).onSubmit {
+                        region.sendToMapLat(latitude: latInput)
+                        latInput = ""
+                        place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)}
+                }
+                HStack {
+                    Text("Lon:")
+                    TextField(region.longitudeString, text: $lonInput) .onSubmit {
+                        region.sendToMapLon(longitude: lonInput)
+                        lonInput = ""
+                        place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)}
+                }
         
+            }
+            Button {
+                print("send co-ordinates to geocode")
+            } label: {
+                Image(systemName: "mappin.and.ellipse").resizable()
+            }.frame(width:25, height: 25).padding()
+            }.onAppear {
+                    region.sendToMapLat(latitude: place.placeLatitude)
+                    region.sendToMapLon(longitude: place.placeLongitude)
+                    latInput = ""
+                    lonInput = ""
+                }.onDisappear {
+                    region.sendToMapLat(latitude: latInput)
+                    region.sendToMapLon(longitude: lonInput)
+                    place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)
+                }
+            
+        }
     }
-}

@@ -20,6 +20,7 @@
 		900A028B282904B900F83CD1 /* PlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900A028A282904B900F83CD1 /* PlaceView.swift */; };
 		900A028D282904D300F83CD1 /* PlaceRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900A028C282904D300F83CD1 /* PlaceRowView.swift */; };
 		90115636283B15720087F6B0 /* SetAndRiseTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90115635283B15720087F6B0 /* SetAndRiseTimeView.swift */; };
+		90115638283B18630087F6B0 /* LocationTextOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90115637283B18630087F6B0 /* LocationTextOutput.swift */; };
 		90555BCA2829381400E7903D /* EditPlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90555BC92829381400E7903D /* EditPlaceDetails.swift */; };
 		907C443B282BCCC00038B208 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907C443A282BCCC00038B208 /* MapView.swift */; };
 		907C443E282BCD120038B208 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 907C443D282BCD120038B208 /* MapKit.framework */; };
@@ -65,6 +66,7 @@
 		900A028A282904B900F83CD1 /* PlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceView.swift; sourceTree = "<group>"; };
 		900A028C282904D300F83CD1 /* PlaceRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceRowView.swift; sourceTree = "<group>"; };
 		90115635283B15720087F6B0 /* SetAndRiseTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAndRiseTimeView.swift; sourceTree = "<group>"; };
+		90115637283B18630087F6B0 /* LocationTextOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTextOutput.swift; sourceTree = "<group>"; };
 		90555BC92829381400E7903D /* EditPlaceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPlaceDetails.swift; sourceTree = "<group>"; };
 		907C443A282BCCC00038B208 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		907C443D282BCD120038B208 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -193,6 +195,7 @@
 				90A6A463282CBA7B0071983B /* LonLatOutputs.swift */,
 				90AE42D828346250007B5FC1 /* MapSnapshot.swift */,
 				90115635283B15720087F6B0 /* SetAndRiseTimeView.swift */,
+				90115637283B18630087F6B0 /* LocationTextOutput.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				90555BCA2829381400E7903D /* EditPlaceDetails.swift in Sources */,
 				900A028B282904B900F83CD1 /* PlaceView.swift in Sources */,
 				90A6A462282CB4540071983B /* LonLatInputs.swift in Sources */,
+				90115638283B18630087F6B0 /* LocationTextOutput.swift in Sources */,
 				900A02612828F81C00F83CD1 /* Persistence.swift in Sources */,
 				90AE42DB28346692007B5FC1 /* MapSnapshotViewModel.swift in Sources */,
 				90D3628E282942D000712D6D /* ShowPlaceDetails.swift in Sources */,

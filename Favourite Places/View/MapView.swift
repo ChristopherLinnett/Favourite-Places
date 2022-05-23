@@ -14,11 +14,14 @@ struct MapView: View {
     @Environment(\.editMode) var editMode
     var body: some View {
         VStack {
-            Map(coordinateRegion: $region)
             if editMode?.wrappedValue == .active {
+                LocationTextOutput(locationName: "")
+                Map(coordinateRegion: $region)
                 LonLatInputs(region: $region, place:place)
             } else {
+                Map(coordinateRegion: $region)
                 LonLatOutputs(region: $region, place:place)
+
             }
         }.navigationTitle(place.placeTitle)
             .navigationBarItems(trailing: EditButton())
