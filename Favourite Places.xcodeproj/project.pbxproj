@@ -135,6 +135,7 @@
 		900A02562828F81900F83CD1 /* Favourite Places */ = {
 			isa = PBXGroup;
 			children = (
+				9011563F283BA0D40087F6B0 /* SunriseSunset.swift */,
 				900A02892829049200F83CD1 /* View */,
 				900A02862829006700F83CD1 /* ViewModel */,
 				900A02572828F81900F83CD1 /* Favourite_PlacesApp.swift */,
@@ -142,7 +143,6 @@
 				900A02602828F81C00F83CD1 /* Persistence.swift */,
 				900A02622828F81C00F83CD1 /* Favourite_Places.xcdatamodeld */,
 				900A025D2828F81C00F83CD1 /* Preview Content */,
-				9011563F283BA0D40087F6B0 /* SunriseSunset.swift */,
 			);
 			path = "Favourite Places";
 			sourceTree = "<group>";
@@ -189,7 +189,6 @@
 				90555BC8282937CB00E7903D /* SubViews */,
 				900A02592828F81900F83CD1 /* ContentView.swift */,
 				900A028A282904B900F83CD1 /* PlaceView.swift */,
-				900A028C282904D300F83CD1 /* PlaceRowView.swift */,
 				907C443A282BCCC00038B208 /* MapView.swift */,
 			);
 			path = View;
@@ -204,6 +203,7 @@
 				90A6A463282CBA7B0071983B /* LonLatOutputs.swift */,
 				90AE42D828346250007B5FC1 /* MapSnapshot.swift */,
 				90115635283B15720087F6B0 /* SetAndRiseTimeView.swift */,
+				900A028C282904D300F83CD1 /* PlaceRowView.swift */,
 				90115637283B18630087F6B0 /* LocationTextOutput.swift */,
 			);
 			path = SubViews;

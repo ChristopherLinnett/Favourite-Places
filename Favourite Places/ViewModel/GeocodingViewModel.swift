@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 import MapKit
 
-class GeocodingVM: ObservableObject {
+@MainActor class GeocodingVM: ObservableObject {
     @Published var regionTitle: String
     @Published var region: MKCoordinateRegion
     @Published var sunriseSunset = SunriseSunset(sunrise: "unknown", sunset: "unknown")
@@ -66,18 +66,18 @@ class GeocodingVM: ObservableObject {
         }
     }
     
-    func lookupSunriseAndSunset() {
+    func lookupSunriseAndSunset() async throws{
         let urlString = "https://api.sunrise-sunset.org/json?lat=\(region.latitudeString)&lng=\(region.longitudeString)"
         guard let url = URL(string: urlString) else {
             print("Bad URL: \(urlString)")
             return
         }
-        guard let jsonData = try? Data(contentsOf: url) else {
-            print("couldn't get sunrise/sunset")
-            return
-        }
-        guard let apiResults = try? JSONDecoder().decode(SunriseSunsetAPI.self, from: jsonData) else {
-            print("couldn't work with JSON data: \(String(describing: String(data: jsonData, encoding: .utf8)))")
+        let urlRequest = URLRequest(url: url)
+        let (data, response) = try await URLSession.shared.data(for: urlRequest)
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else { fatalError("Error while fetching data") }
+
+        guard let apiResults = try? JSONDecoder().decode(SunriseSunsetAPI.self, from: data) else {
+            print("couldn't work with JSON data: \(String(describing: String(data: data, encoding: .utf8)))")
             return
         }
         let dateInputFormatter = DateFormatter()
@@ -96,6 +96,7 @@ class GeocodingVM: ObservableObject {
         if let time = dateInputFormatter.date(from:apiResults.results.sunset) {
             converted.sunset = dateOutputFormatter.string(from: time)
         }
-        sunriseSunset = converted
+        sunrise = converted.sunrise
+        sunset = converted.sunset
     }
 }

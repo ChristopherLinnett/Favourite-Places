@@ -48,7 +48,13 @@ struct PlaceView: View {
             .onAppear {
                 geocoder.region.sendToMapLat(latitude: place.placeLatitude)
                 geocoder.region.sendToMapLon(longitude: place.placeLongitude)
-                geocoder.lookupSunriseAndSunset()
+                Task {
+                    do {
+                        try await geocoder.lookupSunriseAndSunset()
+                    }   catch {
+                        print("error",error)
+                    }
+                }
             }
     }
 }
