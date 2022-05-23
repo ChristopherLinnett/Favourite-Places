@@ -12,7 +12,15 @@ import MapKit
 class GeocodingVM: ObservableObject {
     @Published var regionTitle: String
     @Published var region: MKCoordinateRegion
- 
+    @Published var sunriseSunset = SunriseSunset(sunrise: "unknown", sunset: "unknown")
+    var sunrise: String {
+        get { sunriseSunset.sunrise }
+        set { sunriseSunset.sunrise = newValue }
+    }
+    var sunset: String {
+        get { sunriseSunset.sunset }
+        set { sunriseSunset.sunset = newValue}
+    }
     
     
     init(){
@@ -53,11 +61,25 @@ class GeocodingVM: ObservableObject {
                 return
             }
             let placemark = placemarks[0]
-            guard let title = placemark.subLocality, let country = placemark.country else {
-                print("mark has no location")
-                return
-            }
-             self.regionTitle = "\(title), \(country)"
+            let title = placemark.locality ?? placemark.subAdministrativeArea ?? placemark.administrativeArea ?? placemark.country ?? ""
+             self.regionTitle = "\(title)"
         }
+    }
+    
+    func lookupSunriseAndSunset() {
+        let urlString = "https://api.sunrise-sunset.org/json?lat=\(region.latitudeString)&lng=\(region.longitudeString)"
+        guard let url = URL(string: urlString) else {
+            print("Bad URL: \(urlString)")
+            return
+        }
+        guard let jsonData = try? Data(contentsOf: url) else {
+            print("couldn't get sunrise/sunset")
+            return
+        }
+        guard let apiResults = try? JSONDecoder().decode(SunriseSunsetAPI.self, from: jsonData) else {
+            print("couldn't work with JSON data: \(String(describing: String(data: jsonData, encoding: .utf8)))")
+            return
+        }
+        sunriseSunset = apiResults.results
     }
 }

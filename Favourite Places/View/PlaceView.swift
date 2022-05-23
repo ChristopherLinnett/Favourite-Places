@@ -31,7 +31,7 @@ struct PlaceView: View {
             }
         }
         Spacer()
-            SetAndRiseTimeView()
+        SetAndRiseTimeView(geocoder: geocoder)
             .navigationTitle(place.placeTitle)
             .task {
                 image = await place.getImage()
@@ -48,6 +48,7 @@ struct PlaceView: View {
             .onAppear {
                 geocoder.region.sendToMapLat(latitude: place.placeLatitude)
                 geocoder.region.sendToMapLon(longitude: place.placeLongitude)
+                geocoder.lookupSunriseAndSunset()
             }
     }
 }

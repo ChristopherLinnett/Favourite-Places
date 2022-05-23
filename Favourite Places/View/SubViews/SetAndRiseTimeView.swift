@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct SetAndRiseTimeView: View {
+    @ObservedObject var geocoder: GeocodingVM
     var body: some View {
         HStack {
-            Label("Sunrise", systemImage: "sunrise")
+            Label(geocoder.sunrise, systemImage: "sunrise")
             Spacer()
-            Label("Sunset", systemImage: "sunset")
+            Label(geocoder.sunset, systemImage: "sunset")
         }.padding()
     }
 }
