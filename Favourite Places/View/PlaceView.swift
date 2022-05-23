@@ -17,7 +17,7 @@ struct PlaceView: View {
     @State var placeLatitude: String = ""
     @State var placeLongitude: String = ""
     @State var image = Image(systemName: "photo")
-    @State var region: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), latitudinalMeters: 1000, longitudinalMeters: 1000)
+    @StateObject var geocoder: GeocodingVM = GeocodingVM()
     
     
     
@@ -27,7 +27,7 @@ struct PlaceView: View {
             if editMode?.wrappedValue == .active  {
                 EditPlaceDetails(placeTitle: $placeTitle, placeImageURL: $placeImageURL, placeDescription: $placeDescription, placeLatitude: $placeLatitude, placeLongitude: $placeLongitude, place: place)
             } else {
-                ShowPlaceDetails(image: $image ,place: place, region: $region)
+                ShowPlaceDetails(image: $image ,place: place, geocoder: geocoder)
             }
         }
         Spacer()
@@ -46,8 +46,8 @@ struct PlaceView: View {
                 }
             })
             .onAppear {
-                region.sendToMapLat(latitude: place.placeLatitude)
-                region.sendToMapLon(longitude: place.placeLongitude)
+                geocoder.region.sendToMapLat(latitude: place.placeLatitude)
+                geocoder.region.sendToMapLon(longitude: place.placeLongitude)
             }
     }
 }

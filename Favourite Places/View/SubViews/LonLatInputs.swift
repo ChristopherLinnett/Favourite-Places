@@ -11,24 +11,24 @@ import MapKit
 struct LonLatInputs: View {
     @State var latInput: String = ""
     @State var lonInput: String = ""
-    @Binding var region: MKCoordinateRegion
+    @ObservedObject var geocoder: GeocodingVM
     @ObservedObject var place:Place
     var body: some View {
         HStack{
             VStack {
                 HStack{
                     Text("Lat:")
-                    TextField(region.latitudeString, text: $latInput).onSubmit {
-                        region.sendToMapLat(latitude: latInput)
+                    TextField(geocoder.region.latitudeString, text: $latInput).onSubmit {
+                        geocoder.region.sendToMapLat(latitude: latInput)
                         latInput = ""
-                        place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)}
+                        place.updateFromMap(latitude: geocoder.region.center.latitude, longitude: geocoder.region.center.longitude)}
                 }
                 HStack {
                     Text("Lon:")
-                    TextField(region.longitudeString, text: $lonInput) .onSubmit {
-                        region.sendToMapLon(longitude: lonInput)
+                    TextField(geocoder.region.longitudeString, text: $lonInput) .onSubmit {
+                        geocoder.region.sendToMapLon(longitude: lonInput)
                         lonInput = ""
-                        place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)}
+                        place.updateFromMap(latitude: geocoder.region.center.latitude, longitude: geocoder.region.center.longitude)}
                 }
         
             }
@@ -38,14 +38,14 @@ struct LonLatInputs: View {
                 Image(systemName: "mappin.and.ellipse").resizable()
             }.frame(width:25, height: 25).padding()
             }.onAppear {
-                    region.sendToMapLat(latitude: place.placeLatitude)
-                    region.sendToMapLon(longitude: place.placeLongitude)
+                geocoder.region.sendToMapLat(latitude: place.placeLatitude)
+                geocoder.region.sendToMapLon(longitude: place.placeLongitude)
                     latInput = ""
                     lonInput = ""
                 }.onDisappear {
-                    region.sendToMapLat(latitude: latInput)
-                    region.sendToMapLon(longitude: lonInput)
-                    place.updateFromMap(latitude: region.center.latitude, longitude: region.center.longitude)
+                    geocoder.region.sendToMapLat(latitude: latInput)
+                    geocoder.region.sendToMapLon(longitude: lonInput)
+                    place.updateFromMap(latitude: geocoder.region.center.latitude, longitude: geocoder.region.center.longitude)
                 }
             
         }

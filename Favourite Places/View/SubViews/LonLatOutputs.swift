@@ -9,16 +9,16 @@ import SwiftUI
 import MapKit
 
 struct LonLatOutputs: View {
-    @Binding var region: MKCoordinateRegion
+    @ObservedObject var geocoder: GeocodingVM
     @ObservedObject var place:Place
     var body: some View {
         HStack{
             Text("Lat:")
-            Text(region.latitudeString)
+            Text(geocoder.region.latitudeString)
         }
         HStack {
             Text("Lon:")
-            Text(region.longitudeString)
+            Text(geocoder.region.longitudeString)
         }
     }
 }

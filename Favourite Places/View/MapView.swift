@@ -10,17 +10,18 @@ import MapKit
 
 struct MapView: View {
     @ObservedObject var place:Place
-    @Binding var region: MKCoordinateRegion
+    @ObservedObject var geocoder: GeocodingVM
+    @State var locationName: String
     @Environment(\.editMode) var editMode
     var body: some View {
         VStack {
             if editMode?.wrappedValue == .active {
-                LocationTextOutput(locationName: "")
-                Map(coordinateRegion: $region)
-                LonLatInputs(region: $region, place:place)
+                LocationTextOutput(locationName: $locationName, geocoder: geocoder)
+                Map(coordinateRegion: $geocoder.region)
+                LonLatInputs(geocoder: geocoder, place:place)
             } else {
-                Map(coordinateRegion: $region)
-                LonLatOutputs(region: $region, place:place)
+                Map(coordinateRegion: $geocoder.region)
+                LonLatOutputs(geocoder: geocoder, place:place)
 
             }
         }.navigationTitle(place.placeTitle)

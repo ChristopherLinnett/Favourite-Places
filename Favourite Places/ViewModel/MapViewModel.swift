@@ -7,32 +7,29 @@
 
 import Foundation
 import MapKit
+import Combine
 
 extension MKCoordinateRegion {
     var latitudeString: String {
         get {String(center.latitude)
         }
-        set {guard let lat = CLLocationDegrees(newValue) else { return }
+        set {guard let lat = CLLocationDegrees(newValue), abs(lat)<=90 else { return }
             center.latitude = lat
         }
     }
     var longitudeString: String {
         get {String(center.longitude)
         }
-        set {guard let lon = CLLocationDegrees(newValue) else { return }
+        set {guard let lon = CLLocationDegrees(newValue), abs(lon)<=180 else { return }
             center.longitude = lon
         }
     }
     mutating func sendToMapLat(latitude: String) {
-        guard let lat = Float(latitude) else {return}
-        if lat >= -90 && lat <= 90 {
-            latitudeString = latitude
-        } else { return }
+        guard let _ = Float(latitude) else {return}
+        latitudeString = latitude
     }
     mutating func sendToMapLon(longitude: String){
-        guard let lon = Float(longitude) else {return}
-        if lon >= -180 && lon <= 180 {
-            longitudeString = longitude
-        } else { return }
+        guard let _ = Float(longitude) else {return}
+        longitudeString = longitude
     }
 }

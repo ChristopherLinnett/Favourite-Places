@@ -6,23 +6,19 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct LocationTextOutput: View {
-    @State var locationName: String
+    @Binding var locationName: String
+    @ObservedObject var geocoder: GeocodingVM
     var body: some View {
         HStack {
-            Button {
-                print("finding co-ords")
+             Button {
+                geocoder.lookupCoordinates(for: locationName)
             } label: {
                 Image(systemName: "magnifyingglass.circle").resizable(resizingMode: .stretch).padding(.all, 12.0)
             }.frame(width: 50, height: 50, alignment: .leading)
-            TextField("Noosa Heads", text: $locationName).font(.title2).frame(height: 50)
+            TextField("", text: $locationName).font(.title2).frame(height: 50)
         }
-    }
-}
-
-struct LocationTextOutput_Previews: PreviewProvider {
-    static var previews: some View {
-        LocationTextOutput(locationName: "Big Ben")
     }
 }

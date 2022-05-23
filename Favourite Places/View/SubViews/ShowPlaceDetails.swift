@@ -11,15 +11,15 @@ import MapKit
 struct ShowPlaceDetails: View {
     @Binding var image: Image
     @ObservedObject var place: Place
-    @Binding var region: MKCoordinateRegion
+    @ObservedObject var geocoder: GeocodingVM
     var body: some View {
         image.aspectRatio(contentMode: .fit)
 //        VStack {
         Text(place.placeDescription != "" ? place.placeDescription : "No Description").frame(height:200).listRowSeparator(.hidden)
             Spacer()
-            NavigationLink(destination: MapView(place: place, region: $region)) {
+        NavigationLink(destination: MapView(place: place, geocoder: geocoder, locationName: "\(place.placeTitle)")) {
                 HStack {
-                    MapSnapshot(region: region)
+                    MapSnapshot(region: geocoder.region)
                     Text("Show \(place.placeTitle) on Map")
                 }
             }
