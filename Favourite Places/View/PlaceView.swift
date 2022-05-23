@@ -29,7 +29,10 @@ struct PlaceView: View {
             } else {
                 ShowPlaceDetails(image: $image ,place: place, region: $region)
             }
-        }.navigationTitle(place.placeTitle)
+        }
+        Spacer()
+            SetAndRiseTimeView()
+            .navigationTitle(place.placeTitle)
             .task {
                 image = await place.getImage()
             }
