@@ -80,6 +80,22 @@ class GeocodingVM: ObservableObject {
             print("couldn't work with JSON data: \(String(describing: String(data: jsonData, encoding: .utf8)))")
             return
         }
-        sunriseSunset = apiResults.results
+        let dateInputFormatter = DateFormatter()
+        dateInputFormatter.dateStyle = .none
+        dateInputFormatter.timeStyle = .medium
+        dateInputFormatter.timeZone = .init(secondsFromGMT: 0)
+        let dateOutputFormatter = DateFormatter()
+        dateOutputFormatter.dateStyle = .none
+        dateOutputFormatter.timeStyle = .medium
+        dateOutputFormatter.timeZone = .current
+        
+        var converted = apiResults.results
+        if let time = dateInputFormatter.date(from:apiResults.results.sunrise) {
+            converted.sunrise = dateOutputFormatter.string(from: time)
+        }
+        if let time = dateInputFormatter.date(from:apiResults.results.sunset) {
+            converted.sunset = dateOutputFormatter.string(from: time)
+        }
+        sunriseSunset = converted
     }
 }
