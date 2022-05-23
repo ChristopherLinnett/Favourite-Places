@@ -33,6 +33,11 @@ struct LonLatInputs: View {
         
             }
             Button {
+                geocoder.region.sendToMapLat(latitude: latInput)
+                geocoder.region.sendToMapLon(longitude: lonInput)
+                latInput = ""
+                lonInput = ""
+
                 geocoder.lookupName()
             } label: {
                 Image(systemName: "mappin.and.ellipse").resizable()
