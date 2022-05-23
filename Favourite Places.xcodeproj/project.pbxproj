@@ -21,6 +21,8 @@
 		900A028D282904D300F83CD1 /* PlaceRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900A028C282904D300F83CD1 /* PlaceRowView.swift */; };
 		90115636283B15720087F6B0 /* SetAndRiseTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90115635283B15720087F6B0 /* SetAndRiseTimeView.swift */; };
 		90115638283B18630087F6B0 /* LocationTextOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90115637283B18630087F6B0 /* LocationTextOutput.swift */; };
+		9011563C283B77740087F6B0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9011563B283B77740087F6B0 /* CoreLocation.framework */; };
+		9011563E283B857D0087F6B0 /* GeocodingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9011563D283B857D0087F6B0 /* GeocodingViewModel.swift */; };
 		90555BCA2829381400E7903D /* EditPlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90555BC92829381400E7903D /* EditPlaceDetails.swift */; };
 		907C443B282BCCC00038B208 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907C443A282BCCC00038B208 /* MapView.swift */; };
 		907C443E282BCD120038B208 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 907C443D282BCD120038B208 /* MapKit.framework */; };
@@ -67,6 +69,8 @@
 		900A028C282904D300F83CD1 /* PlaceRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceRowView.swift; sourceTree = "<group>"; };
 		90115635283B15720087F6B0 /* SetAndRiseTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAndRiseTimeView.swift; sourceTree = "<group>"; };
 		90115637283B18630087F6B0 /* LocationTextOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTextOutput.swift; sourceTree = "<group>"; };
+		9011563B283B77740087F6B0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		9011563D283B857D0087F6B0 /* GeocodingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingViewModel.swift; sourceTree = "<group>"; };
 		90555BC92829381400E7903D /* EditPlaceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPlaceDetails.swift; sourceTree = "<group>"; };
 		907C443A282BCCC00038B208 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		907C443D282BCD120038B208 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -83,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9011563C283B77740087F6B0 /* CoreLocation.framework in Frameworks */,
 				907C443E282BCD120038B208 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -170,6 +175,7 @@
 				900A0287282900B400F83CD1 /* PlaceViewModel.swift */,
 				907C443F282BD7B60038B208 /* MapViewModel.swift */,
 				90AE42DA28346692007B5FC1 /* MapSnapshotViewModel.swift */,
+				9011563D283B857D0087F6B0 /* GeocodingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -203,6 +209,7 @@
 		907C443C282BCD120038B208 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9011563B283B77740087F6B0 /* CoreLocation.framework */,
 				907C443D282BCD120038B208 /* MapKit.framework */,
 			);
 			name = Frameworks;
@@ -350,6 +357,7 @@
 				907C4440282BD7B60038B208 /* MapViewModel.swift in Sources */,
 				90AE42D928346250007B5FC1 /* MapSnapshot.swift in Sources */,
 				900A02642828F81C00F83CD1 /* Favourite_Places.xcdatamodeld in Sources */,
+				9011563E283B857D0087F6B0 /* GeocodingViewModel.swift in Sources */,
 				907C443B282BCCC00038B208 /* MapView.swift in Sources */,
 				900A025A2828F81900F83CD1 /* ContentView.swift in Sources */,
 				900A02582828F81900F83CD1 /* Favourite_PlacesApp.swift in Sources */,
