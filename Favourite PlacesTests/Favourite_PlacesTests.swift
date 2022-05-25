@@ -36,12 +36,12 @@ class Favourite_PlacesTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    // initialise a map region to test ability to edit
+
     func testMapFeatures() throws {
-        // initialise a map region to test ability to edit
         var testMapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 10, longitude: 10), latitudinalMeters: 100, longitudinalMeters: 100)
         XCTAssertEqual(testMapRegion.latitudeString, "10.0")  //Testing variable getter is able to pull a string from the initialised lat Double value
         XCTAssertEqual(testMapRegion.longitudeString, "10.0") //Testing variable getter is able to pull a string from the initialised lat Double value
-        
         testMapRegion.sendToMapLat(latitude: "80")  //attempting to modify map region value
         testMapRegion.sendToMapLon(longitude: "80") //attempting to modify map region value
         XCTAssertEqual(testMapRegion.latitudeString, "80.0") //checking modification was successful
@@ -55,6 +55,18 @@ class Favourite_PlacesTests: XCTestCase {
         XCTAssertNotEqual(testMapRegion.longitudeString, "200.0") //making sure new value of 200 was not set
         
     }
+    ///tests the function for updating the sunrise and sunset from an API
+    @MainActor func testSunriseSunsetUpdater() async throws {
+        let testViewModel = ViewModel()
+        testViewModel.region.latitudeString = "-27.4705"    //set a location's lat for input
+        testViewModel.region.longitudeString = "153.0260"   //set a locatin's lon for input
+        XCTAssertEqual(testViewModel.sunriseSunset.sunset, "unknown")   //check default values are intact
+        XCTAssertEqual(testViewModel.sunriseSunset.sunrise, "unknown")  // check default values are intact
+        try! await testViewModel.lookupSunriseAndSunset()               //run async function to get the sunrise/sunset times
+        XCTAssertNotEqual(testViewModel.sunriseSunset.sunset, "unknown")        //check async function has changed the default sunset time
+        XCTAssertNotEqual(testViewModel.sunriseSunset.sunrise, "unknown")       //check async function has updated the default sunrise time
+    }
+    
 
     func testExample() throws {
 
