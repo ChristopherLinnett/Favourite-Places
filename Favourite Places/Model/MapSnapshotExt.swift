@@ -9,15 +9,15 @@ import Foundation
 import MapKit
 
 extension MapSnapshot {
-    
+    ///takes in a map region, and loads an image into the corresponding snpashotImage variable
     func generateSnapshot(width: CGFloat, height: CGFloat, region: MKCoordinateRegion) {
 
-      // Map options.
+      /// Map options.
       let mapOptions = MKMapSnapshotter.Options()
       mapOptions.region = region
       mapOptions.size = CGSize(width: width, height: height)
 
-      // Create the snapshotter and run it.
+      ///Create the snapshotter and run it.
       let snapshotter = MKMapSnapshotter(options: mapOptions)
       snapshotter.start { (snapshotOrNil, errorOrNil) in
         if let error = errorOrNil {

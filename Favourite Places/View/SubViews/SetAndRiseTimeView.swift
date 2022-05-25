@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
-
+///this view ouptus the sunrise and sunset times in text labels with corresponding icons
 struct SetAndRiseTimeView: View {
-    @ObservedObject var geocoder: GeocodingVM
+    @ObservedObject var geocoder: ViewModel
     var body: some View {
         HStack {
             Label(geocoder.sunrise, systemImage: "sunrise")

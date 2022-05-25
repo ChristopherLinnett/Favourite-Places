@@ -11,7 +11,7 @@ import MapKit
 struct ShowPlaceDetails: View {
     @Binding var image: Image
     @ObservedObject var place: Place
-    @ObservedObject var geocoder: GeocodingVM
+    @ObservedObject var geocoder: ViewModel
     var body: some View {
         image.aspectRatio(contentMode: .fit)
 //        VStack {

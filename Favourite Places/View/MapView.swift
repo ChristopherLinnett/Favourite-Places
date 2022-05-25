@@ -7,10 +7,10 @@
 
 import SwiftUI
 import MapKit
-
+///A view that contains an interactive map detail view
 struct MapView: View {
     @ObservedObject var place:Place
-    @ObservedObject var geocoder: GeocodingVM
+    @ObservedObject var geocoder: ViewModel
     @State var locationName: String
     @Environment(\.editMode) var editMode
     var body: some View {

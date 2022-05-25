@@ -7,11 +7,11 @@
 
 import SwiftUI
 import MapKit
-
+///This view consists of input fields that can be used to manipulate the current map/place position
 struct LonLatInputs: View {
     @State var latInput: String = ""
     @State var lonInput: String = ""
-    @ObservedObject var geocoder: GeocodingVM
+    @ObservedObject var geocoder: ViewModel
     @ObservedObject var place:Place
     var body: some View {
         HStack{

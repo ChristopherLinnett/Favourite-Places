@@ -17,9 +17,7 @@ struct PlaceView: View {
     @State var placeLatitude: String = ""
     @State var placeLongitude: String = ""
     @State var image = Image(systemName: "photo")
-    @StateObject var geocoder: GeocodingVM = GeocodingVM()
-    
-    
+    @StateObject var geocoder: ViewModel = ViewModel()
     
     var body: some View {
         ///while edit mode is disabled, the list will present information to the user, when enabled will show editing fields.

@@ -7,7 +7,7 @@
 
 import SwiftUI
 import MapKit
-
+///This view shows an image based on the current map coordinates
 struct MapSnapshot: View {
     let region: MKCoordinateRegion
     @State public var snapshotImage: UIImage? = nil

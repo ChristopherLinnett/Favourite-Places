@@ -7,9 +7,9 @@
 
 import SwiftUI
 import MapKit
-
+///This view allows an input field for a place title, and has a button that will geocode this title
 struct LocationTextOutput: View {
-    @ObservedObject var geocoder: GeocodingVM
+    @ObservedObject var geocoder: ViewModel
     var body: some View {
         HStack {
              Button {

@@ -22,16 +22,16 @@
 		90115636283B15720087F6B0 /* SetAndRiseTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90115635283B15720087F6B0 /* SetAndRiseTimeView.swift */; };
 		90115638283B18630087F6B0 /* LocationTextOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90115637283B18630087F6B0 /* LocationTextOutput.swift */; };
 		9011563C283B77740087F6B0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9011563B283B77740087F6B0 /* CoreLocation.framework */; };
-		9011563E283B857D0087F6B0 /* GeocodingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9011563D283B857D0087F6B0 /* GeocodingViewModel.swift */; };
+		9011563E283B857D0087F6B0 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9011563D283B857D0087F6B0 /* ViewModel.swift */; };
 		90115640283BA0D40087F6B0 /* SunriseSunset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9011563F283BA0D40087F6B0 /* SunriseSunset.swift */; };
 		90555BCA2829381400E7903D /* EditPlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90555BC92829381400E7903D /* EditPlaceDetails.swift */; };
 		907C443B282BCCC00038B208 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907C443A282BCCC00038B208 /* MapView.swift */; };
 		907C443E282BCD120038B208 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 907C443D282BCD120038B208 /* MapKit.framework */; };
-		907C4440282BD7B60038B208 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907C443F282BD7B60038B208 /* MapViewModel.swift */; };
+		907C4440282BD7B60038B208 /* MapModelExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907C443F282BD7B60038B208 /* MapModelExt.swift */; };
 		90A6A462282CB4540071983B /* LonLatInputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A6A461282CB4540071983B /* LonLatInputs.swift */; };
 		90A6A464282CBA7B0071983B /* LonLatOutputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A6A463282CBA7B0071983B /* LonLatOutputs.swift */; };
 		90AE42D928346250007B5FC1 /* MapSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AE42D828346250007B5FC1 /* MapSnapshot.swift */; };
-		90AE42DB28346692007B5FC1 /* MapSnapshotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AE42DA28346692007B5FC1 /* MapSnapshotViewModel.swift */; };
+		90AE42DB28346692007B5FC1 /* MapSnapshotExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AE42DA28346692007B5FC1 /* MapSnapshotExt.swift */; };
 		90D3628E282942D000712D6D /* ShowPlaceDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D3628D282942D000712D6D /* ShowPlaceDetails.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,16 +71,16 @@
 		90115635283B15720087F6B0 /* SetAndRiseTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAndRiseTimeView.swift; sourceTree = "<group>"; };
 		90115637283B18630087F6B0 /* LocationTextOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTextOutput.swift; sourceTree = "<group>"; };
 		9011563B283B77740087F6B0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		9011563D283B857D0087F6B0 /* GeocodingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodingViewModel.swift; sourceTree = "<group>"; };
+		9011563D283B857D0087F6B0 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		9011563F283BA0D40087F6B0 /* SunriseSunset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunriseSunset.swift; sourceTree = "<group>"; };
 		90555BC92829381400E7903D /* EditPlaceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPlaceDetails.swift; sourceTree = "<group>"; };
 		907C443A282BCCC00038B208 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		907C443D282BCD120038B208 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		907C443F282BD7B60038B208 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		907C443F282BD7B60038B208 /* MapModelExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModelExt.swift; sourceTree = "<group>"; };
 		90A6A461282CB4540071983B /* LonLatInputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LonLatInputs.swift; sourceTree = "<group>"; };
 		90A6A463282CBA7B0071983B /* LonLatOutputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LonLatOutputs.swift; sourceTree = "<group>"; };
 		90AE42D828346250007B5FC1 /* MapSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSnapshot.swift; sourceTree = "<group>"; };
-		90AE42DA28346692007B5FC1 /* MapSnapshotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSnapshotViewModel.swift; sourceTree = "<group>"; };
+		90AE42DA28346692007B5FC1 /* MapSnapshotExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSnapshotExt.swift; sourceTree = "<group>"; };
 		90D3628D282942D000712D6D /* ShowPlaceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPlaceDetails.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,9 +135,9 @@
 		900A02562828F81900F83CD1 /* Favourite Places */ = {
 			isa = PBXGroup;
 			children = (
-				9011563F283BA0D40087F6B0 /* SunriseSunset.swift */,
+				9011563D283B857D0087F6B0 /* ViewModel.swift */,
 				900A02892829049200F83CD1 /* View */,
-				900A02862829006700F83CD1 /* ViewModel */,
+				900A02862829006700F83CD1 /* Model */,
 				900A02572828F81900F83CD1 /* Favourite_PlacesApp.swift */,
 				900A025B2828F81C00F83CD1 /* Assets.xcassets */,
 				900A02602828F81C00F83CD1 /* Persistence.swift */,
@@ -172,15 +172,15 @@
 			path = "Favourite PlacesUITests";
 			sourceTree = "<group>";
 		};
-		900A02862829006700F83CD1 /* ViewModel */ = {
+		900A02862829006700F83CD1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				900A0287282900B400F83CD1 /* PlaceViewModel.swift */,
-				907C443F282BD7B60038B208 /* MapViewModel.swift */,
-				90AE42DA28346692007B5FC1 /* MapSnapshotViewModel.swift */,
-				9011563D283B857D0087F6B0 /* GeocodingViewModel.swift */,
+				9011563F283BA0D40087F6B0 /* SunriseSunset.swift */,
+				907C443F282BD7B60038B208 /* MapModelExt.swift */,
+				90AE42DA28346692007B5FC1 /* MapSnapshotExt.swift */,
 			);
-			path = ViewModel;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		900A02892829049200F83CD1 /* View */ = {
@@ -353,15 +353,15 @@
 				90A6A462282CB4540071983B /* LonLatInputs.swift in Sources */,
 				90115638283B18630087F6B0 /* LocationTextOutput.swift in Sources */,
 				900A02612828F81C00F83CD1 /* Persistence.swift in Sources */,
-				90AE42DB28346692007B5FC1 /* MapSnapshotViewModel.swift in Sources */,
+				90AE42DB28346692007B5FC1 /* MapSnapshotExt.swift in Sources */,
 				90115640283BA0D40087F6B0 /* SunriseSunset.swift in Sources */,
 				90D3628E282942D000712D6D /* ShowPlaceDetails.swift in Sources */,
 				900A0288282900B400F83CD1 /* PlaceViewModel.swift in Sources */,
 				900A028D282904D300F83CD1 /* PlaceRowView.swift in Sources */,
-				907C4440282BD7B60038B208 /* MapViewModel.swift in Sources */,
+				907C4440282BD7B60038B208 /* MapModelExt.swift in Sources */,
 				90AE42D928346250007B5FC1 /* MapSnapshot.swift in Sources */,
 				900A02642828F81C00F83CD1 /* Favourite_Places.xcdatamodeld in Sources */,
-				9011563E283B857D0087F6B0 /* GeocodingViewModel.swift in Sources */,
+				9011563E283B857D0087F6B0 /* ViewModel.swift in Sources */,
 				907C443B282BCCC00038B208 /* MapView.swift in Sources */,
 				900A025A2828F81900F83CD1 /* ContentView.swift in Sources */,
 				900A02582828F81900F83CD1 /* Favourite_PlacesApp.swift in Sources */,

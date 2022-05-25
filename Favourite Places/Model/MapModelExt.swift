@@ -10,6 +10,7 @@ import MapKit
 import Combine
 
 extension MKCoordinateRegion {
+    ///A string conversion of the map's current latitude
     var latitudeString: String {
         get {String(center.latitude)
         }
@@ -17,6 +18,7 @@ extension MKCoordinateRegion {
             center.latitude = lat
         }
     }
+    ///A string conversion of the map's current longitude
     var longitudeString: String {
         get {String(center.longitude)
         }
@@ -24,10 +26,12 @@ extension MKCoordinateRegion {
             center.longitude = lon
         }
     }
+    ///Takes in a latitude string value and updates the map in the current view
     mutating func sendToMapLat(latitude: String) {
         guard let _ = Float(latitude) else {return}
         latitudeString = latitude
     }
+    ///Takes in a longitude string value and updates the map in the current view
     mutating func sendToMapLon(longitude: String){
         guard let _ = Float(longitude) else {return}
         longitudeString = longitude

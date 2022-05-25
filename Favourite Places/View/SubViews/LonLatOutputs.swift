@@ -7,9 +7,9 @@
 
 import SwiftUI
 import MapKit
-
+///this view outputs the current latitude and longitudes co-ordinates of the map
 struct LonLatOutputs: View {
-    @ObservedObject var geocoder: GeocodingVM
+    @ObservedObject var geocoder: ViewModel
     @ObservedObject var place:Place
     var body: some View {
         HStack{

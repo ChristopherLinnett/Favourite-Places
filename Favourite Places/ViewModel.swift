@@ -9,7 +9,8 @@ import Foundation
 import CoreLocation
 import MapKit
 
-@MainActor class GeocodingVM: ObservableObject {
+///Main view model, holds instances of multiple models taht will be used to interact with the map, sunset and sunrise data, and functions to modify the appearance of the view
+@MainActor class ViewModel: ObservableObject {
     @Published var regionTitle: String
     @Published var region: MKCoordinateRegion
     @Published var sunriseSunset = SunriseSunset(sunrise: "unknown", sunset: "unknown")
@@ -27,6 +28,7 @@ import MapKit
         regionTitle = ""
         region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), latitudinalMeters: 500, longitudinalMeters: 500)
     }
+    ///function takes a string title of a place, puts it through the online API and processes the resulting Co-ordinates into the map
     func lookupCoordinates(){
         let coder = CLGeocoder()
         coder.geocodeAddressString(regionTitle) { (optionalplacemarks, optionalError) in
@@ -48,7 +50,7 @@ import MapKit
 
         }
     }
-    
+    ///Takes the current location, puts it into the API and retrieves the name of the place at those co-ordinates
     func lookupName() {
         let coder = CLGeocoder()
         coder.reverseGeocodeLocation(CLLocation(latitude: region.center.latitude, longitude: region.center.longitude)){ [self] (optionalplacemarks, optionalError) in
@@ -65,7 +67,7 @@ import MapKit
              self.regionTitle = "\(title)"
         }
     }
-    
+    ///takes the current map co-ordinates and sends them through a sunrise-sunset co-ordinates and formats the results into your current time zone and displays them in Text on the view
     func lookupSunriseAndSunset() async throws{
         let urlString = "https://api.sunrise-sunset.org/json?lat=\(region.latitudeString)&lng=\(region.longitudeString)"
         guard let url = URL(string: urlString) else {

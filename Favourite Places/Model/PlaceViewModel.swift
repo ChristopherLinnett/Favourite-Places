@@ -86,7 +86,7 @@ extension Place {
         }
         return true
     }
-    
+    ///Takes values (latitude and longitude) and updates the those properties for the current place within the database
     func updateFromMap(latitude:Double, longitude: Double){
         placeLatitude = String(latitude)
         placeLongitude = String(longitude)
