@@ -10,7 +10,6 @@ import SwiftUI
 @main
 struct Favourite_PlacesApp: App {
     let persistenceController = PersistenceController.shared
-
     var body: some Scene {
         WindowGroup {
             ContentView(persistenceController: persistenceController)

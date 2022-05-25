@@ -11,23 +11,21 @@ import MapKit
 extension MapSnapshot {
     ///takes in a map region, and loads an image into the corresponding snpashotImage variable
     func generateSnapshot(width: CGFloat, height: CGFloat, region: MKCoordinateRegion) {
-
-      /// Map options.
-      let mapOptions = MKMapSnapshotter.Options()
-      mapOptions.region = region
-      mapOptions.size = CGSize(width: width, height: height)
-
-      ///Create the snapshotter and run it.
-      let snapshotter = MKMapSnapshotter(options: mapOptions)
-      snapshotter.start { (snapshotOrNil, errorOrNil) in
-        if let error = errorOrNil {
-          print(error)
-          return
+        /// Map options.
+        let mapOptions = MKMapSnapshotter.Options()
+        mapOptions.region = region
+        mapOptions.size = CGSize(width: width, height: height)
+        ///Create the snapshotter and run it.
+        let snapshotter = MKMapSnapshotter(options: mapOptions)
+        snapshotter.start { (snapshotOrNil, errorOrNil) in
+            if let error = errorOrNil {
+                print(error)
+                return
+            }
+            if let snapshot = snapshotOrNil {
+                self.snapshotImage = snapshot.image
+            }
         }
-        if let snapshot = snapshotOrNil {
-          self.snapshotImage = snapshot.image
-        }
-      }
     }
     
 }

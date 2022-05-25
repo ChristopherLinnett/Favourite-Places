@@ -59,7 +59,6 @@ extension Place {
         if lat != "" {placeLatitude = lat}
         if lon != "" {placeLongitude = lon}
     }
-
     ///Downloads, caches and displays an image based on a URL
     func getImage() async -> Image {
         guard let url = place_image_URL else {return defaultImage}

@@ -22,7 +22,6 @@ struct MapView: View {
             } else {
                 Map(coordinateRegion: $geocoder.region)
                 LonLatOutputs(geocoder: geocoder, place:place)
-
             }
         }.navigationTitle(place.placeTitle)
             .navigationBarItems(trailing: EditButton())
